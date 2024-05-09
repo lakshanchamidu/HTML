@@ -1,0 +1,142 @@
+/* Header styling */
+body{
+    background-image: url("back1.jpg");
+    background-position: center;
+    background-size: cover;
+}
+.title h1{
+  color: rgb(255, 255, 255);
+  right: 120px;
+  bottom: 250px;
+  font-weight: bold;
+  font-size: 90px;
+  text-align: center;
+}
+.content p{
+  color: rgb(255, 255, 255);
+  right: 800px;
+  font-weight: bold;
+  text-align: center;
+  font-size: 30px;
+}
+.navbar {
+    background-color: #070f2a; /* Dark blue */
+    color: #fff;
+    padding: 20px 0;
+    font-size: 18px;
+  }
+  
+  .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    font-size: 16px;
+    margin-left: 50px;
+  }
+  
+  .logo img {
+    width: 200px;
+    height: auto;
+    align-self: left;
+  }
+  
+  .nav-links {
+    list-style: none;
+    display: flex;
+  }
+  
+  .nav-links li {
+    margin-right: 20px;
+  }
+  
+  .nav-links a {
+    text-decoration: none;
+    color: #fff;
+    transition: color 0.3s ease;
+    font-size: 18px;
+  }
+  
+  .nav-links a:hover {
+    color: #4a90e2; /* Light blue */
+  }
+  
+  /* Footer styles */
+  footer {
+    position: absolute;
+    bottom: -370px;
+    left: 0;
+    width: 100%;
+    background-color: #040c2a; /* Dark blue */
+    color: #fff;
+    padding: 50px 0;
+    font-family: Arial, sans-serif;
+    text-align: center;
+}
+
+  h3 {
+    color: #fff;
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  ul li {
+    margin-bottom: 10px;
+  }
+  
+  ul li a {
+    color: #fff;
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+  
+  ul li a:hover {
+    color: #4a90e2; /* Light blue */
+  }
+  
+  /* Sub-editors styling */
+  .sub-editors {
+    list-style-type: none;
+    padding-left: 0;
+    margin-top: 10px;
+  }
+  
+  .sub-editors li {
+    color: #ccc; /* Light gray */
+    font-size: 14px;
+    margin-bottom: 5px;
+  }
+  
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  
+  .col-md-4 {
+    flex: 0 0 calc(33.333% - 20px);
+    max-width: calc(33.333% - 20px);
+    margin-bottom: 20px;
+    text-align: left;
+  }
+  
+  @media (max-width: 768px) {
+    .col-md-4 {
+      flex: 0 0 calc(50% - 20px);
+      max-width: calc(50% - 20px);
+    }
+  }
+  
+  

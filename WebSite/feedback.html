@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feedback Form</title>
+    <link rel="stylesheet" href="feedback.CSS"> 
+</head>
+<body>
+    <header class="navbar">
+        <div class="container">
+          <h1 class="logo"><img src="logo.png" alt="BlueBin Logo"></h1>
+          <nav>
+            <ul class="nav-links">
+              <li><a href="home.html">Home</a></li>
+              <li><a href="gallery.html">Gallery</a></li>
+              <li><a href="shop.html">Shop</a></li>
+              <li><a href="userprofiile.htmlk">User Profile</a></li>
+              <li><a href="feedback.html">Feedback</a></li>
+              <li><a href="aboutus.html">About Us</a></li>
+              <li><a href="sitemap.html">Sitemap</a></li>
+              <li><a href="additionalcontent.html">Additional Content</a></li>
+            </ul>
+          </nav>
+        </div>
+      </header>
+    <br><br><br><br><div class="topic"><h1>Feedback Form</h1></div> 
+    <form id="feedback-form" method="post" action="home.html">
+        <div class="form-group">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" placeholder="Enter your name">
+        </div>
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" placeholder="Enter your email">
+        </div>
+        <!-- Additional Questions -->
+        <div class="form-group">
+            <label for="first-time">Was this the first time you were here?</label>
+            <div>
+                <input type="radio" id="yes-first-time" name="first-time" value="yes">
+                <label for="yes-first-time">Yes</label>
+                <input type="radio" id="no-first-time" name="first-time" value="no">
+                <label for="no-first-time">No</label>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="suggest">Are you to suggest our service?</label>
+            <div>
+                <input type="radio" id="yes-Suggest" name="suggest" value="yes">
+                <label for="yes-Suggest">Yes</label>
+                <input type="radio" id="no-Suggest" name="suggest" value="no">
+                <label for="no-Suggest">No</label>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="Easy">Were you able to complete your tasks easily?</label>
+            <div>
+                <input type="radio" id="yes-Easy" name="Easy" value="yes">
+                <label for="yes-Easy">Yes</label>
+                <input type="radio" id="no-Easy" name="Easy" value="no">
+                <label for="no-Easy">No</label>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="specific">Did you find something specific about service that you really liked?</label>
+            <div>
+                <input type="radio" id="yes-specific" name="specific" value="yes">
+                <label for="yes-specific">Yes</label>
+                <input type="radio" id="no-specific" name="specific" value="no">
+                <label for="no-specific">No</label>
+            </div>
+        </div>
+        
+        <div class="form-group rating">
+            <label for="rating">Rating:</label>
+            <div class="stars">
+                <input type="radio" id="star1" name="rating" value="5">
+                <label for="star1">&#9733;</label>
+                <input type="radio" id="star2" name="rating" value="4">
+                <label for="star2">&#9733;</label>
+                <input type="radio" id="star3" name="rating" value="3">
+                <label for="star3">&#9733;</label>
+                <input type="radio" id="star4" name="rating" value="2">
+                <label for="star4">&#9733;</label>
+                <input type="radio" id="star5" name="rating" value="1">
+                <label for="star5">&#9733;</label>
+            </div>
+        </div>
+        <div class="form-group">
+            <br>
+            <label for="comment">Comment:</label>
+            <textarea id="comment" name="comment" rows="5" placeholder="Enter your feedback"></textarea>
+        </div>
+        <div class="form-group">
+            <button type="button" id="preview-btn">Preview</button>
+            <button type="submit" id="submit-btn">Submit</button>
+        </div>
+    </form>
+    <div id="preview-modal" class="hidden">
+        <h2>Preview</h2>
+        <p id="preview-name"></p>
+        <p id="preview-email"></p>
+        <p id="preview-first-time"></p>
+        <p id="preview-suggest"></p>
+        <p id="preview-easy"></p>
+        <p id="preview-specific"></p>
+        <p id="preview-rating"></p>
+        <p id="preview-comment"></p>
+        <button id="close-preview">Close</button>
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+    const yesNoButtons = document.querySelectorAll('.yes-no-btn');
+    const feedbackForm = document.getElementById('feedback-form');
+    const previewBtn = document.getElementById('preview-btn');
+    const closePreviewBtn = document.getElementById('close-preview');
+    const previewModal = document.getElementById('preview-modal');
+    const previewName = document.getElementById('preview-name');
+    const previewEmail = document.getElementById('preview-email');
+    const previewFirstTime = document.getElementById('preview-first-time');
+    const previewSuggest = document.getElementById('preview-informative');
+    const previewEasy = document.getElementById('preview-recommend');
+    const previewSpecific = document.getElementById('preview-specific');
+    const previewRating = document.getElementById('preview-rating');
+    const previewComment = document.getElementById('preview-comment');
+    const submitBtn = document.getElementById('submit-btn'); 
+
+    yesNoButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            const parentDiv = this.parentElement;
+            const inputHidden = parentDiv.querySelector('input[type="hidden"]');
+            inputHidden.value = this.value;
+            yesNoButtons.forEach(btn => btn.classList.remove('selected'));
+            this.classList.add('selected');
+        });
+    });
+
+    previewBtn.addEventListener('click', function() {
+      previewName.textContent = `Name: ${document.getElementById('name').value}`;
+      previewEmail.textContent = `Email: ${document.getElementById('email').value}`;
+      previewInformative.textContent = `Are you to suggest our service?  ${document.querySelector('input[name="suggest"]:checked')?.value ?? 'Not provided'}`;
+      previewRecommend.textContent = `Were you able to complete your tasks easily? ${document.querySelector('input[name="Easy"]:checked')?.value ?? 'Not provided'}`;
+      previewSpecific.textContent = `Did you find something specific about service that you really liked? ${document.querySelector('input[name="specific"]:checked')?.value ?? 'Not provided'}`;
+      previewRating.textContent = `Rating: ${document.querySelector('input[name="rating"]:checked')?.value ?? 'Not provided'}`;
+  previewComment.textContent = `Comment: ${document.getElementById('comment').value}`;
+        
+        previewModal.classList.remove('hidden');
+    });
+
+    closePreviewBtn.addEventListener('click', function() {
+        previewModal.classList.add('hidden');
+    });
+
+    feedbackForm.addEventListener('submit', function(event) {
+        event.preventDefault();
+        alert('Form submitted!');
+    });
+
+    submitBtn.addEventListener('click', function() {
+        feedbackForm.submit(); 
+    });
+});
+
+    </script>
+    <footer>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4">
+          <h3>Follow Us</h3>
+          <ul class="social-links">
+            <li><a href="#"><i class="fab fa-facebook-f"></i> Facebook</a></li>
+            <li><a href="#"><i class="fab fa-twitter"></i> Twitter</a></li>
+            <li><a href="#"><i class="fab fa-instagram"></i> Instagram</a></li>
+          </ul>
+        </div>
+        <div class="col-md-4">
+          <h3>Page Editors and Links</h3>
+          <ul class="editor-links">
+            <li>
+              <i class="fas fa-user-edit"></i> Editorial Team
+              <ul class="sub-editors">
+                <li><a href="pageeditor.html">Chamidu</a></li>
+                <li><a href="editor-tharushi.html">Tharushi</a></li>
+                <li><a href="editor-kaveesha.html">Kaveesha</a></li>
+                <li><a href="editor-kasun.html">Kasun</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+        <div class="col-md-4">
+          <h3>Quick Links</h3>
+          <ul class="quick-links">
+            <li><a href="home.html"><i class="fas fa-home"></i> Home</a></li>
+            <li><a href="#"><i class="fas fa-info-circle"></i> About Us</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <h3>Our Services</h3>
+          <ul class="services">
+            <li><a href="#"><i class="fas fa-shopping-cart"></i> Shop</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <div class="btn">
+      <button id="toTopButton">Go to Top</button>
+        <script src="pageeditor.js"></script>
+    </div>
+    <script src="feedback.js"></script>
+
+</body>
+</html>
